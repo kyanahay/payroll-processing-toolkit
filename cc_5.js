@@ -1,6 +1,6 @@
 // Payroll Processing Toolkit 
 
-// Step 2: Array of 3–5 employee objects
+// Step 2: Array of 4 employee objects
 const employees = [
   { name: "Alicia", hourlyRate: 25, hoursWorked: 38 },
   { name: "Brandon", hourlyRate: 18.5, hoursWorked: 45 },
@@ -8,7 +8,7 @@ const employees = [
   { name: "Daria", hourlyRate: 21, hoursWorked: 40 },
 ];
 
-// Format money nicely
+// Format money to 2 dp
 function formatMoney(amount) {
   return `$${amount.toFixed(2)}`;
 }
@@ -74,9 +74,9 @@ function processPayroll(employee) {
 
 // Quick function tests 
 console.log("=== Function Tests ===");
-console.log("Base pay (25/hr, 38h):", formatMoney(calculateBasePay(25, 38))); // 950.00
-console.log("OT pay (18.5/hr, 45h):", formatMoney(calculateOvertimePay(18.5, 45))); // 138.75
-console.log("Net pay after tax (1000):", formatMoney(calculateTaxes(1000))); // 850.00
+console.log("Base pay (25/hr, 38h):", formatMoney(calculateBasePay(25, 38))); // 25 x 38 =950.00
+console.log("OT pay (18.5/hr, 45h):", formatMoney(calculateOvertimePay(18.5, 45))); // 18.5 x 1.5 x 5 = 138.75
+console.log("Net pay after tax (1000):", formatMoney(calculateTaxes(1000))); // 1000 x 0.85 = 850.00
 
 // Step 7: Loop employees and log payroll object 
 console.log("\n=== Payroll Report (Table) ===");
