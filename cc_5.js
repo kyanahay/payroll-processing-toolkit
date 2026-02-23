@@ -1,0 +1,75 @@
+// Payroll Processing Toolkit 
+
+// Step 2: Array of 3–5 employee objects
+const employees = [
+  { name: "Alicia", hourlyRate: 25, hoursWorked: 38 },
+  { name: "Brandon", hourlyRate: 18.5, hoursWorked: 45 },
+  { name: "Chen", hourlyRate: 32, hoursWorked: 52 },
+  { name: "Daria", hourlyRate: 21, hoursWorked: 40 },
+];
+
+// Format money nicely
+function formatMoney(amount) {
+  return `$${amount.toFixed(2)}`;
+}
+
+// Step 3: calculateBasePay(rate, hours)
+// Returns pay for up to 40 hours only
+function calculateBasePay(rate, hours) {
+  if (typeof rate !== "number" || typeof hours !== "number") return 0;
+
+  const baseHours = Math.min(hours, 40);
+  return rate * baseHours;
+}
+
+// Step 4: calculateOvertimePay(rate, hours)
+// Returns 1.5x rate for hours over 40
+function calculateOvertimePay(rate, hours) {
+  if (typeof rate !== "number" || typeof hours !== "number") return 0;
+
+  const overtimeHours = Math.max(hours - 40, 0);
+  return overtimeHours * rate * 1.5;
+}
+
+// Step 5: calculateTaxes(grossPay)
+// Deducts 15% tax and returns NET pay (after tax)
+function calculateTaxes(grossPay) {
+  if (typeof grossPay !== "number") return 0;
+
+  const taxRate = 0.15;
+  const netPay = grossPay * (1 - taxRate);
+  return netPay;
+}
+
+// Step 6: processPayroll(employee)
+// Returns an object with: name, basePay, overtimePay, grossPay, netPay
+function processPayroll(employee) {
+    if (!employee || typeof employee !== "object") {
+    return {
+      name: "Unknown",
+      basePay: 0,
+      overtimePay: 0,
+      grossPay: 0,
+      netPay: 0,
+    };
+  }
+
+  const name = employee.name ?? "Unnamed";
+  const rate = Number(employee.hourlyRate);
+  const hours = Number(employee.hoursWorked);
+
+  const basePay = calculateBasePay(rate, hours);
+  const overtimePay = calculateOvertimePay(rate, hours);
+  const grossPay = basePay + overtimePay;
+  const netPay = calculateTaxes(grossPay);
+
+  return {
+    name,
+    basePay,
+    overtimePay,
+    grossPay,
+    netPay,
+  };
+}
+
+
