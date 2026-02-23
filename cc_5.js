@@ -79,9 +79,8 @@ console.log("OT pay (18.5/hr, 45h):", formatMoney(calculateOvertimePay(18.5, 45)
 console.log("Net pay after tax (1000):", formatMoney(calculateTaxes(1000))); // 850.00
 
 // Step 7: Loop employees and log payroll object 
-console.log("\n=== Payroll Report (Objects) ===");
-for (const employee of employees) {
-  const payroll = processPayroll(employee);
-  console.log(payroll);
-}
+console.log("\n=== Payroll Report (Table) ===");
+const payrollReport = employees.map(processPayroll);
+console.table(payrollReport);
+
 
